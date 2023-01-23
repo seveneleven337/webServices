@@ -1,4 +1,5 @@
 package ws.customer.data;
+import java.util.Enumeration;
 import java.util.Hashtable;
 public class CustomerDB {
     
@@ -18,6 +19,20 @@ public class CustomerDB {
           return  customers.get(id);
         
      }
+     
+     public static Customer[] getCustomerInterval(float min, float max) {
+         Customer customerInt[] = new Customer[10];
+         int counter = 0;
+         Enumeration<Integer> e = customers.keys();
+         while (e.hasMoreElements()) {
+        	 int key = e.nextElement();
+        	 if(customers.get(key).getShoppingAmount()>min && customers.get(key).getShoppingAmount()<max) {
+        		 customerInt[counter] = customers.get(key);
+        		 counter++;
+        	 }
+         }
+    	 return  customerInt; 
+    }
      
      public static void deleteById(int id) {
     	 customers.remove(id);

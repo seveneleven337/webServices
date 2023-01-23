@@ -28,4 +28,8 @@ public class CustomerService {
     public void deleteCustomer(int id) {
     	CustomerDB.deleteById(id);
     }
+    
+    public Customer[] getCustomerInterval(float min, float max) {
+    	return CustomerDB.getCustomerInterval(min, max);
+    }
 }
