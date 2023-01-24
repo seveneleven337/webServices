@@ -1,4 +1,5 @@
 package ws.customer.data;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 public class CustomerDB {
@@ -21,15 +22,17 @@ public class CustomerDB {
      }
      
      public static Customer[] getCustomerInterval(float min, float max) {
-         Customer customerInt[] = new Customer[10];
-         int counter = 0;
+    	 ArrayList<Customer> temp = new ArrayList<Customer>();
          Enumeration<Integer> e = customers.keys();
          while (e.hasMoreElements()) {
         	 int key = e.nextElement();
         	 if(customers.get(key).getShoppingAmount()>min && customers.get(key).getShoppingAmount()<max) {
-        		 customerInt[counter] = customers.get(key);
-        		 counter++;
+        		 temp.add(customers.get(key));
         	 }
+         }
+         Customer[] customerInt = new Customer[temp.size()];
+         for(int i=0; i<temp.size();i++) {
+        	 customerInt[i] = temp.get(i);
          }
     	 return  customerInt; 
     }
